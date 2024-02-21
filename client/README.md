@@ -1,19 +1,41 @@
+# Solidity-Patched Changelist
+
+## Added `Hardhat: Generate yaml file for variables` command
+This command will look for `@bu-meta` tags in solidity files and gather the explorer source, any proxy that points to it, and the storage of the contract. This is aggregated across all files in the repo and written to a `hardhat_lsp_vars.yaml` file. 
+
+This is accessible via the command palette (Cmd+Shift+P or Ctrl+Shift+P) by searching for `Hardhat: Generate yaml file for variables`.
+
+The command takes an optional parameter of a space-separated string of directories that should be searched for solidity contracts.
+- by default, "src lib" is used, but "contracts node_modules" could be provided to search those directories instead.
+
+## Added additional Hover text for variables
+
+If a contract contains a `@bu-meta source: <explorer_link>` and optionally `@bu-meta proxied-by: <explorer_link>`, the LSP will look for the `hardhat_lsp_vars.yaml` file and display the string located at the matching `<network>_<address>:vars[<hovered_var>]` entry.
+
+
+
+
 # Solidity by Nomic Foundation
 
 This extension adds language support for [Solidity](https://soliditylang.org/) to Visual Studio Code, and provides editor integration for [Hardhat](https://hardhat.org/) projects, and experimental support for [Foundry](https://getfoundry.sh/), [Truffle](https://trufflesuite.com/) and [Ape](https://www.apeworx.io/) projects. It supports:
 
-- [Code completion](#code-completions)
-- [Go to definition, type definition and references](#navigation)
-- [Symbol renames](#renames)
-- [Solidity code formatting](#format-document)
-- [Inline code validation from compiler errors/warnings for Hardhat projects](#inline-code-validation-diagnostics)
-- [Hover help for variables, function calls, errors, events etc.](#hover)
-- [Code actions (quickfixes) suggested from compiler errors/warnings for Hardhat projects](#code-actions)
-  - [Implement missing functions on interface with stubs](#implement-missing-functions-on-interface)
-  - [Constrain mutability by adding `view`/`pure` to function signature](#constrain-mutability)
-  - [Meet inheritance requirements by adding `virtual`/`override` on function signature](#adding-virtualoverride-on-inherited-function-signature)
-  - [Provide accessibility by adding `public`/`private` to function signature](#adding-publicprivate-to-function-signature)
-  - [Specify license identifier and pragma solidity version](#adding-license-identifier-and-pragma-solidity-version)
+- [Solidity-Patched Changelist](#solidity-patched-changelist)
+  - [Added `Hardhat: Generate yaml file for variables` command](#added-hardhat-generate-yaml-file-for-variables-command)
+  - [Added additional Hover text for variables](#added-additional-hover-text-for-variables)
+- [Solidity by Nomic Foundation](#solidity-by-nomic-foundation)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Commands](#commands)
+      - [Compile project](#compile-project)
+      - [Clean artifacts](#clean-artifacts)
+      - [Flatten contract](#flatten-contract)
+    - [Task provider](#task-provider)
+  - [Formatting](#formatting)
+    - [Formatting Configuration](#formatting-configuration)
+      - [Prettier](#prettier)
+      - [Forge](#forge)
+  - [Alternative editors](#alternative-editors)
+  - [Feedback, help and news](#feedback-help-and-news)
 
 Built by the [Nomic Foundation](https://nomic.foundation/). [We’re hiring](https://nomic.foundation/hiring).
 
@@ -21,17 +43,23 @@ Built by the [Nomic Foundation](https://nomic.foundation/). [We’re hiring](htt
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Features](#features)
-- [Project support](#project-support)
-  - [Hardhat](#hardhat)
-  - [Foundry](#foundry-experimental)
-  - [Truffle](#truffle-experimental)
-  - [Ape](#ape-experimental)
-- [Monorepo Support](#monorepo-support)
-- [Formatting](#formatting)
-  - [Formatting Configuration](#formatting-configuration)
-- [Feedback, help and news](#feedback-help-and-news)
+- [Solidity-Patched Changelist](#solidity-patched-changelist)
+  - [Added `Hardhat: Generate yaml file for variables` command](#added-hardhat-generate-yaml-file-for-variables-command)
+  - [Added additional Hover text for variables](#added-additional-hover-text-for-variables)
+- [Solidity by Nomic Foundation](#solidity-by-nomic-foundation)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Commands](#commands)
+      - [Compile project](#compile-project)
+      - [Clean artifacts](#clean-artifacts)
+      - [Flatten contract](#flatten-contract)
+    - [Task provider](#task-provider)
+  - [Formatting](#formatting)
+    - [Formatting Configuration](#formatting-configuration)
+      - [Prettier](#prettier)
+      - [Forge](#forge)
+  - [Alternative editors](#alternative-editors)
+  - [Feedback, help and news](#feedback-help-and-news)
 
 ---
 
