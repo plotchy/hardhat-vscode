@@ -1,8 +1,8 @@
 {
-  "name": "hardhat-solidity",
+  "name": "hardhat-solidity-patched",
   "publisher": "NomicFoundation",
-  "displayName": "Solidity",
-  "description": "Solidity and Hardhat support by the Hardhat team",
+  "displayName": "Solidity-Patched",
+  "description": "Solidity and Hardhat support by the Hardhat team, with some patched in var value grabbing",
   "license": "MIT",
   "version": "0.7.2",
   "private": true,
@@ -155,6 +155,10 @@
         "title": "Hardhat: Clear cache and artifacts "
       },
       {
+        "command": "solidity.hardhat.generate",
+        "title": "Hardhat: Generate yaml file for variables"
+      },
+      {
         "command": "solidity.hardhat.flattenCurrentFile",
         "title": "Hardhat: Flatten this file and its dependencies",
         "enablement": "editorLangId == 'solidity' && solidity.inHardhatProject"
@@ -170,7 +174,7 @@
     }
   },
   "__metadata": {
-    "id": "dada159b-1dfe-49fc-a369-0e08ecdff9b3",
+    "id": "dada159b-1dfe-49fc-a369-0e08ecdff9b4",
     "publisherDisplayName": "Nomic Foundation",
     "publisherId": "973909a1-f7d7-44c0-9261-c2e7903bf2dd",
     "isPreReleaseVersion": false
