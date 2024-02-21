@@ -1,4 +1,4 @@
-# Solidity-Patched Changelist
+# Solidity-Patched 
 
 ## To Install
 
@@ -11,7 +11,16 @@ or:
 
 You should disable the original `Solidity` extension provided by NomicFoundation in the extensions tab.
 
-## Added `Hardhat: Generate yaml file for variables` command
+## How To Use
+1. Do a bu-rs pull with the storage enabled.
+2. Open command palette (Cmd+Shift+P or Ctrl+Shift+P) and run `Hardhat: Generate yaml file for variables`
+   1. it'll prompt for directories to look for solidity files in. By default it uses "src lib".
+   2. this will add a `hardhat_lsp_vars.yaml` file to the root of your project
+3. Hover over variables to show the values associated with it.
+
+## Changelist
+
+### Added `Hardhat: Generate yaml file for variables` command
 This command will look for `@bu-meta` tags in solidity files and gather the explorer source, any proxy that points to it, and the storage of the contract. This is aggregated across all files in the repo and written to a `hardhat_lsp_vars.yaml` file. 
 
 This is accessible via the command palette (Cmd+Shift+P or Ctrl+Shift+P) by searching for `Hardhat: Generate yaml file for variables`.
